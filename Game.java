@@ -34,23 +34,29 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room comedorCentral, habitaciones, servicios, descansillo, bodega, salaDeMaquinas, salaDeControl;
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        comedorCentral = new Room("La sala principal de dirigible, las paredes son de madera, el suelo esta enmoquetado de color purpura,\n " +
+        "el techo cubierto por bonitos frescos y adornado con lamparas de araña completa una habitacion que es la representacion misma\n " +
+        "del lujo y la ostentacion.");
+        habitaciones = new Room("No son las habitaciones mas lujosas del dirigible pero cuentan con cama, armario, mesita y lampara propias.");
+        servicios = new Room("Unos lujosos servicios tanto para caballeros como para damas equipados con grandes espejos y amueblados de marmol");
+        descansillo = new Room("Un pasillo decorados con cuadros que conecta varias salas.");
+        bodega = new Room("Aqui se guardan los equipajes y otras cosas, nada especial, en principio...");
+        salaDeMaquinas = new Room("La sala mas importante del dirigible ya que es la que os mantiene en el aire, y por lo tanto tambien la mas peligrosa");
+        salaDeControl = new Room("Desde aqui se controla el dirigible y actualmente esta ocupada por los bandidos");
         
         // initialise room exits
-        outside.setExits(null, theater, lab, pub);
-        theater.setExits(null, null, null, outside);
-        pub.setExits(null, outside, null, null);
-        lab.setExits(outside, office, null, null);
-        office.setExits(null, null, null, lab);
+        comedorCentral.setExits(servicios, salaDeControl, habitaciones, descansillo);
+        habitaciones.setExits(comedorCentral, null, null, null);
+        servicios.setExits(null, null, comedorCentral, null);
+        descansillo.setExits(salaDeMaquinas, comedorCentral, bodega, null);
+        bodega.setExits(descansillo, null, null, null);
+        salaDeMaquinas.setExits(null, null, descansillo, null);
+        salaDeControl.setExits(null, null, null, comedorCentral);
 
-        currentRoom = outside;  // start game outside
+        currentRoom = comedorCentral;  // start game outside
     }
 
     /**
@@ -81,7 +87,7 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        System.out.println("You are " + currentRoom.getDescription());
+        System.out.println("Te encuentras " + currentRoom.getDescription());
         System.out.print("Exits: ");
         if(currentRoom.northExit != null) {
             System.out.print("north ");
