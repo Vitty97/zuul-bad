@@ -34,7 +34,7 @@ public class Game
      */
     private void createRooms()
     {
-        Room comedorCentral, habitaciones, servicios, descansillo, bodega, salaDeMaquinas, salaDeControl, captainRoom;
+        Room comedorCentral, habitaciones, servicios, descansillo, bodega, salaDeMaquinas, salaDeControl, habitacionCapitan, salaMaquinasSup;
 
         // create the rooms
         comedorCentral = new Room("La sala principal de dirigible, las paredes son de madera, el suelo esta enmoquetado de color purpura,\n " +
@@ -46,17 +46,17 @@ public class Game
         bodega = new Room("Aqui se guardan los equipajes y otras cosas, nada especial, en principio...");
         salaDeMaquinas = new Room("La sala mas importante del dirigible ya que es la que os mantiene en el aire, y por lo tanto tambien la mas peligrosa");
         salaDeControl = new Room("Desde aqui se controla el dirigible y actualmente esta ocupada por los bandidos");
-        captainRoom = new Room("Por alguna razon no puedes salir, la hizo un mago");
-
+        habitacionCapitan = new Room("Por alguna razon no puedes salir, la hizo un mago");
+        salaMaquinasSup = new Room("Aqui se encuentran varias maquinas de refrigeracion");
         // initialise room exits
-        comedorCentral.setExits(servicios, salaDeControl, habitaciones, descansillo, null);
-        habitaciones.setExits(comedorCentral, null, null, null, captainRoom);
-        servicios.setExits(null, null, comedorCentral, null, null);
-        descansillo.setExits(salaDeMaquinas, comedorCentral, bodega, null, null);
-        bodega.setExits(descansillo, null, null, null, null);
-        salaDeMaquinas.setExits(null, null, descansillo, null, null);
-        salaDeControl.setExits(null, null, null, comedorCentral, null);
-        captainRoom.setExits(null, null, null, null, null);
+        comedorCentral.setExits(servicios, salaDeControl, habitaciones, descansillo, null, null);
+        habitaciones.setExits(comedorCentral, null, null, null, null, habitacionCapitan);
+        servicios.setExits(null, null, comedorCentral, null, null, null);
+        descansillo.setExits(salaDeMaquinas, comedorCentral, bodega, null, null, null);
+        bodega.setExits(descansillo, null, null, null, null, null);
+        salaDeMaquinas.setExits(null, null, descansillo, null, salaMaquinasSup, null);
+        salaDeControl.setExits(null, null, null, comedorCentral, null, null);
+        habitacionCapitan.setExits(null, null, null, null, null, null);
 
         currentRoom = comedorCentral;  // start game outside
     }

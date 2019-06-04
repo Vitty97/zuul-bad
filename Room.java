@@ -19,6 +19,7 @@ public class Room
     private Room southExit;
     private Room eastExit;
     private Room westExit;
+    private Room northWestExit;
     private Room southEastExit;
 
     /**
@@ -40,7 +41,7 @@ public class Room
      * @param south The south exit.
      * @param west The west exit.
      */
-    public void setExits(Room north, Room east, Room south, Room west, Room southEast) 
+    public void setExits(Room north, Room east, Room south, Room west, Room northWest, Room southEast) 
     {
         if(north != null)
             northExit = north;
@@ -50,6 +51,8 @@ public class Room
             southExit = south;
         if(west != null)
             westExit = west;
+        if(northWest != null)
+            northWestExit = northWest;    
         if(southEast != null)
             southEastExit = southEast;   
     }
@@ -77,6 +80,9 @@ public class Room
         if(direction.equals("west")) {
             habitacionADevolver = westExit;
         }
+        if(direction.equals("northWest")) {
+            habitacionADevolver = northWestExit;
+        }
         if(direction.equals("southEast")) {
             habitacionADevolver = southEastExit;
         }
@@ -96,6 +102,9 @@ public class Room
         }
         if(westExit != null) {
             aDevolver += "west ";
+        }
+        if(northWestExit != null) {
+            aDevolver += "northWest ";
         }
         if(southEastExit != null) {
             aDevolver += "southEast ";
