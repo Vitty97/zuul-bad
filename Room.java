@@ -14,12 +14,12 @@
  */
 public class Room 
 {
-    public String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
-    public Room southEastExit;
+    private String description;
+    private Room northExit;
+    private Room southExit;
+    private Room eastExit;
+    private Room westExit;
+    private Room southEastExit;
 
     /**
      * Create a room described "description". Initially, it has
@@ -61,5 +61,45 @@ public class Room
     {
         return description;
     }
-
+    
+    public Room getExits(String direction)
+    {
+        Room habitacionADevolver = null;
+        if(direction.equals("north")) {
+            habitacionADevolver = northExit;
+        }
+        if(direction.equals("east")) {
+            habitacionADevolver = eastExit;
+        }
+        if(direction.equals("south")) {
+            habitacionADevolver = southExit;
+        }
+        if(direction.equals("west")) {
+            habitacionADevolver = westExit;
+        }
+        if(direction.equals("southEast")) {
+            habitacionADevolver = southEastExit;
+        }
+        return habitacionADevolver;
+    }
+    
+    public String getExitsString(){
+        String aDevolver = "";
+        if(northExit != null) {
+            aDevolver += "north ";
+        }
+        if(eastExit != null) {
+            aDevolver += "east ";
+        }
+        if(southExit != null) {
+            aDevolver += "south ";
+        }
+        if(westExit != null) {
+            aDevolver += "west ";
+        }
+        if(southEastExit != null) {
+            aDevolver += "southEast ";
+        }
+        return aDevolver;
+    }
 }

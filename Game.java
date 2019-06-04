@@ -19,7 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-        
+
     /**
      * Create the game and initialise its internal map.
      */
@@ -35,11 +35,11 @@ public class Game
     private void createRooms()
     {
         Room comedorCentral, habitaciones, servicios, descansillo, bodega, salaDeMaquinas, salaDeControl, captainRoom;
-      
+
         // create the rooms
         comedorCentral = new Room("La sala principal de dirigible, las paredes son de madera, el suelo esta enmoquetado de color purpura,\n " +
-        "el techo cubierto por bonitos frescos y adornado con lamparas de araña completa una habitacion que es la representacion misma\n " +
-        "del lujo y la ostentacion.");
+            "el techo cubierto por bonitos frescos y adornado con lamparas de araña completa una habitacion que es la representacion misma\n " +
+            "del lujo y la ostentacion.");
         habitaciones = new Room("No son las habitaciones mas lujosas del dirigible pero cuentan con cama, armario, mesita y lampara propias.");
         servicios = new Room("Unos lujosos servicios tanto para caballeros como para damas equipados con grandes espejos y amueblados de marmol");
         descansillo = new Room("Un pasillo decorados con cuadros que conecta varias salas.");
@@ -47,7 +47,7 @@ public class Game
         salaDeMaquinas = new Room("La sala mas importante del dirigible ya que es la que os mantiene en el aire, y por lo tanto tambien la mas peligrosa");
         salaDeControl = new Room("Desde aqui se controla el dirigible y actualmente esta ocupada por los bandidos");
         captainRoom = new Room("Por alguna razon no puedes salir, la hizo un mago");
-        
+
         // initialise room exits
         comedorCentral.setExits(servicios, salaDeControl, habitaciones, descansillo, null);
         habitaciones.setExits(comedorCentral, null, null, null, captainRoom);
@@ -57,7 +57,7 @@ public class Game
         salaDeMaquinas.setExits(null, null, descansillo, null, null);
         salaDeControl.setExits(null, null, null, comedorCentral, null);
         captainRoom.setExits(null, null, null, null, null);
-        
+
         currentRoom = comedorCentral;  // start game outside
     }
 
@@ -70,7 +70,7 @@ public class Game
 
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
-                
+
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
@@ -152,22 +152,7 @@ public class Game
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = null;
-        if(direction.equals("north")) {
-            nextRoom = currentRoom.northExit;
-        }
-        if(direction.equals("east")) {
-            nextRoom = currentRoom.eastExit;
-        }
-        if(direction.equals("south")) {
-            nextRoom = currentRoom.southExit;
-        }
-        if(direction.equals("west")) {
-            nextRoom = currentRoom.westExit;
-        }
-        if(direction.equals("southEast")) {
-            nextRoom = currentRoom.southEastExit;
-        }
+        Room nextRoom = currentRoom.getExits(direction);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
@@ -177,25 +162,11 @@ public class Game
             printLocationInfo();
         }
     }
-    
+
     private void printLocationInfo(){
         System.out.println("Te encuentras en " + currentRoom.getDescription());
         System.out.print("Exits: ");
-        if(currentRoom.northExit != null) {
-            System.out.print("north ");
-        }
-        if(currentRoom.eastExit != null) {
-            System.out.print("east ");
-        }
-        if(currentRoom.southExit != null) {
-            System.out.print("south ");
-        }
-        if(currentRoom.westExit != null) {
-            System.out.print("west ");
-        }
-        if(currentRoom.southEastExit != null) {
-            System.out.print("southEast ");
-        }
+        System.out.println(currentRoom.getExitsString());
         System.out.println();
     }
 
