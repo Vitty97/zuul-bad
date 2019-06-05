@@ -123,6 +123,9 @@ public class Game
         else if (commandWord.equals("mirar")) {
             mirar();
         }
+        else if (commandWord.equals("comer")) {
+            comer();
+        }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
@@ -193,7 +196,11 @@ public class Game
         }
     }
 
-    private void mirar() {	
+    private void mirar() {  
         System.out.println(currentRoom.getLongDescription());
+    }
+    
+    private void comer(){
+        System.out.println("Acabas de comer y ya no tienes hambre");
     }
 }
