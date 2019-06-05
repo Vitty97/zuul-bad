@@ -49,14 +49,20 @@ public class Game
         habitacionCapitan = new Room("Por alguna razon no puedes salir, la hizo un mago");
         salaMaquinasSup = new Room("Aqui se encuentran varias maquinas de refrigeracion");
         // initialise room exits
-        comedorCentral.setExits(servicios, salaDeControl, habitaciones, descansillo, null, null);
-        habitaciones.setExits(comedorCentral, null, null, null, null, habitacionCapitan);
-        servicios.setExits(null, null, comedorCentral, null, null, null);
-        descansillo.setExits(salaDeMaquinas, comedorCentral, bodega, null, null, null);
-        bodega.setExits(descansillo, null, null, null, null, null);
-        salaDeMaquinas.setExits(null, null, descansillo, null, salaMaquinasSup, null);
-        salaDeControl.setExits(null, null, null, comedorCentral, null, null);
-        habitacionCapitan.setExits(null, null, null, null, null, null);
+        comedorCentral.setSalidas("norte", servicios);
+        comedorCentral.setSalidas("este", salaDeControl);
+        comedorCentral.setSalidas("sur", habitaciones);
+        comedorCentral.setSalidas("oeste", descansillo);
+        habitaciones.setSalidas("norte", comedorCentral);
+        habitaciones.setSalidas("sureste", habitacionCapitan);
+        servicios.setSalidas("sur", comedorCentral);
+        descansillo.setSalidas("norte", salaDeMaquinas);
+        descansillo.setSalidas("este", comedorCentral);
+        descansillo.setSalidas("sur", bodega);
+        bodega.setSalidas("norte", descansillo);
+        salaDeMaquinas.setSalidas("sur", descansillo);
+        salaDeMaquinas.setSalidas("noroeste", salaMaquinasSup);
+        salaDeControl.setSalidas("oeste", comedorCentral);
 
         currentRoom = comedorCentral;  // start game outside
     }
