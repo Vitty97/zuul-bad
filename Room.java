@@ -50,17 +50,27 @@ public class Room
     {
         return description;
     }
-    
+
     public Room getExits(String direction)
     {
         return salidas.get(direction);
     }
-    
+
     public String getExitsString(){
         String aDevolver = "";
         for(String habitacionActual : salidas.keySet()){
             aDevolver += habitacionActual + " ";
         }
         return aDevolver;
+    }
+
+    /**
+     * Devuelve un texto con la descripcion larga de la habitacion del tipo:
+     *     You are in the 'name of room'
+     *     Exits: north west southwest
+     * @return Una descripcion de la habitacion incluyendo sus salidas
+     */
+    public String getLongDescription(){
+        return "Te encuentras en " + description + "\nSalidas: " + getExitsString();
     }
 }
