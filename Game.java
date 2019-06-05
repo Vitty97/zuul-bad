@@ -146,7 +146,8 @@ public class Game
         System.out.println("around at the university.");
         System.out.println();
         System.out.println("Los comandos validos son: ");
-        parser.showCommands();
+        System.out.println(parser.showCommands());
+        System.out.println();        
     }
 
     /** 
