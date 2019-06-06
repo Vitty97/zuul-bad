@@ -44,7 +44,8 @@ public class Game
         servicios = new Room("Unos lujosos servicios tanto para caballeros como para damas equipados con grandes espejos y amueblados de marmol");
         descansillo = new Room("Un pasillo decorados con cuadros que conecta varias salas.");
         bodega = new Room("Aqui se guardan los equipajes y otras cosas, nada especial, en principio...");
-        salaDeMaquinas = new Room("La sala mas importante del dirigible ya que es la que os mantiene en el aire, y por lo tanto tambien la mas peligrosa");
+        salaDeMaquinas = new Room("La sala mas importante del dirigible ya que es la que os mantiene en el aire, y por lo tanto tambien la mas peligrosa",
+        new Item("Llave inglesa", 5));
         salaDeControl = new Room("Desde aqui se controla el dirigible y actualmente esta ocupada por los bandidos");
         habitacionCapitan = new Room("Por alguna razon no puedes salir, la hizo un mago");
         salaMaquinasSup = new Room("Aqui se encuentran varias maquinas de refrigeracion");

@@ -17,6 +17,7 @@ public class Room
 {
     private HashMap<String, Room> salidas;
     private String description;
+    private Item item;
 
     /**
      * Create a room described "description". Initially, it has
@@ -27,6 +28,13 @@ public class Room
     public Room(String description) 
     {
         this.description = description;
+        salidas = new HashMap<>();
+    }
+    
+    public Room(String description, Item item) 
+    {
+        this.description = description;
+        this.item = item;
         salidas = new HashMap<>();
     }
 
@@ -71,6 +79,10 @@ public class Room
      * @return Una descripcion de la habitacion incluyendo sus salidas
      */
     public String getLongDescription(){
-        return "Te encuentras en " + description + "\nSalidas: " + getExitsString();
+        String aDevolver = "Te encuentras en " + description + "\n";
+        if(item != null)
+            aDevolver += "Objeto: " + item.getDescripcion();
+        aDevolver += "\nSalidas: " + getExitsString();   
+        return aDevolver;
     }
 }
