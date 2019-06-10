@@ -141,6 +141,9 @@ public class Game
         else if (commandWord.equals("mochila")) {
             jugador.mochila();
         }
+        else if (commandWord.equals("soltar")) {
+            jugador.soltar(command);
+        }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }

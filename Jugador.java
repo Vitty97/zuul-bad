@@ -13,6 +13,7 @@ public class Jugador
     private Stack<Room> pilaHabitaciones;
     private ArrayList<Item> mochila;
     private int pesoActual;
+    
 
     /**
      * Constructor for objects of class Jugador
@@ -23,6 +24,7 @@ public class Jugador
         currentRoom = habitacionInicial;
         mochila = new ArrayList<>();
         pesoActual = 0;
+        
     }
     
     public void goRoom(Command command) 
@@ -80,6 +82,7 @@ public class Jugador
             if(objeto.puedeCogerse()){
                 mochila.add(objeto);
                 pesoActual += objeto.getPeso();
+                currentRoom.eliminarItem(objeto);
             }
             else{
                 System.out.println("No parece que puedas llevarte esto");
@@ -95,5 +98,28 @@ public class Jugador
             System.out.println(itemActual);
         }
         System.out.println("Peso total: " + pesoActual);
+    }
+    
+    public void soltar(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("¿Soltar que?");
+            return;
+        }
+
+        String id = command.getSecondWord();
+
+        boolean buscando = true;
+        int cont = 0;
+        while(buscando && cont < mochila.size()){
+            Item objetoActual = mochila.get(cont);
+            if(objetoActual.getId().equals(id)){
+                currentRoom.addItem(objetoActual);
+                pesoActual -= objetoActual.getPeso();
+                mochila.remove(objetoActual);
+                buscando = false;
+            }
+            cont++;
+        }
     }
 }

@@ -104,4 +104,8 @@ public class Room
         }
         return objetoABuscar;
     }
+    
+    public void eliminarItem(Item item){
+        items.remove(item);
+    }
 }
