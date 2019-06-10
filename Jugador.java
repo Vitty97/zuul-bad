@@ -13,7 +13,7 @@ public class Jugador
     private Stack<Room> pilaHabitaciones;
     private ArrayList<Item> mochila;
     private int pesoActual;
-    
+    private int pesoMax;
 
     /**
      * Constructor for objects of class Jugador
@@ -24,7 +24,7 @@ public class Jugador
         currentRoom = habitacionInicial;
         mochila = new ArrayList<>();
         pesoActual = 0;
-        
+        pesoMax = 20;
     }
     
     public void goRoom(Command command) 
@@ -79,7 +79,7 @@ public class Jugador
         Item objeto = currentRoom.getObjeto(id);
 
         if(objeto != null) {
-            if(objeto.puedeCogerse()){
+            if(objeto.puedeCogerse() && (pesoActual + objeto.getPeso()) <= pesoMax){
                 mochila.add(objeto);
                 pesoActual += objeto.getPeso();
                 currentRoom.eliminarItem(objeto);
