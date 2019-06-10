@@ -65,8 +65,8 @@ public class Game
         salaDeMaquinas.setSalidas("noroeste", salaMaquinasSup);
         salaDeControl.setSalidas("oeste", comedorCentral);
         
-        salaDeMaquinas.addItem(new Item("Llave Inglesa", 5));
-        salaDeMaquinas.addItem(new Item("Tuberia", 6));
+        salaDeMaquinas.addItem(new Item("llaveInglesa", "Llave Inglesa", 5));
+        salaDeMaquinas.addItem(new Item("tuberia", "Tuberia", 6));
         
         currentRoom = comedorCentral;  // start game outside
         return currentRoom;
@@ -133,6 +133,9 @@ public class Game
         }
         else if (commandWord.equals("comer")) {
             jugador.comer();
+        }
+        else if (commandWord.equals("coger")) {
+            jugador.coger(command);
         }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);

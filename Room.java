@@ -89,4 +89,17 @@ public class Room
         aDevolver += "\nSalidas: " + getExitsString();   
         return aDevolver;
     }
+    
+    public Item getObjeto(String id){
+        Item objetoABuscar = null;
+        boolean buscando = true;
+        int cont = 0;
+        while(buscando && cont < items.size()){
+            Item objetoActual = items.get(cont);
+            if(objetoActual.getId().equals(id)){
+                objetoABuscar = objetoActual;
+            }
+        }
+        return objetoABuscar;
+    }
 }
