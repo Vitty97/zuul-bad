@@ -138,6 +138,9 @@ public class Game
         else if (commandWord.equals("coger")) {
             jugador.coger(command);
         }
+        else if (commandWord.equals("mochila")) {
+            jugador.mochila();
+        }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }

@@ -12,6 +12,7 @@ public class Jugador
     private Room currentRoom;
     private Stack<Room> pilaHabitaciones;
     private ArrayList<Item> mochila;
+    private int pesoActual;
 
     /**
      * Constructor for objects of class Jugador
@@ -21,6 +22,7 @@ public class Jugador
         pilaHabitaciones = new Stack<>();
         currentRoom = habitacionInicial;
         mochila = new ArrayList<>();
+        pesoActual = 0;
     }
     
     public void goRoom(Command command) 
@@ -77,6 +79,7 @@ public class Jugador
         if(objeto != null) {
             if(objeto.puedeCogerse()){
                 mochila.add(objeto);
+                pesoActual += objeto.getPeso();
             }
             else{
                 System.out.println("No parece que puedas llevarte esto");
@@ -85,5 +88,12 @@ public class Jugador
         else{
             System.out.println("No puedes encontrar ese objeto en la habitacion");
         }
+    }
+    
+    public void mochila(){
+        for(Item itemActual : mochila){
+            System.out.println(itemActual);
+        }
+        System.out.println("Peso total: " + pesoActual);
     }
 }

@@ -37,4 +37,8 @@ public class Item
     public boolean puedeCogerse(){
         return puedeCogerse;
     }
+    
+    public String toString(){
+        return "Id: " + id + " Descripcion: " + descripcion + " Peso: " + peso;
+    }
 }
