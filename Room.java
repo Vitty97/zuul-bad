@@ -89,4 +89,33 @@ public class Room
         aDevolver += "\nSalidas: " + getExitsString();   
         return aDevolver;
     }
+    
+    public boolean existeItem(String item){
+        boolean existe = false;
+        for(Item itemActual : items){
+            if(itemActual.getDescripcion().equals(item)){
+               existe = true; 
+            }
+        }
+        return existe;
+    }
+    
+    public Item getItem(String item){
+        Item itemADevolver = null;
+        for(Item itemActual : items){
+            if(itemActual.getDescripcion().equals(item)){
+               itemADevolver = itemActual; 
+            }
+        }
+        return itemADevolver;
+    }
+    
+    public void eliminarItem(String item){
+        Item itemAEliminar = null;
+        for(int i = 0; i < items.size(); i++){
+            if(items.get(i).getDescripcion().equals(item)){
+               items.remove(i); 
+            }
+        }
+    }
 }

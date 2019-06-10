@@ -1,4 +1,5 @@
 import java.util.Stack; 
+import java.util.ArrayList; 
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -21,6 +22,9 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Stack<Room> pilaHabitaciones;
+    private int pesoMax;
+    private int pesoActual;
+    private ArrayList<Item> mochila;
     
     /**
      * Create the game and initialise its internal map.
@@ -30,6 +34,9 @@ public class Game
         createRooms();
         parser = new Parser();
         pilaHabitaciones = new Stack<>();
+        pesoMax = 10;
+        pesoActual = 0;
+        mochila = new ArrayList<>();
     }
 
     /**
@@ -135,6 +142,15 @@ public class Game
         else if (commandWord.equals("comer")) {
             comer();
         }
+        else if (commandWord.equals("coger")) {
+            coger(command);
+        }
+        else if (commandWord.equals("soltar")) {
+            soltar(command);
+        }
+        else if (commandWord.equals("mochila")) {
+            mochila();
+        }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
@@ -222,6 +238,60 @@ public class Game
         }
         else{
             System.out.println("No puedes volver mas");
+        }
+    }
+    
+    private void coger(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("¿Que quieres coger?");
+            return;
+        }
+
+        String item = command.getSecondWord();
+
+
+        if (!currentRoom.existeItem(item)) {
+            System.out.println("No hay ese objeto en esta habitacion");
+        }
+        else {
+            Item itemBuscado = currentRoom.getItem(item);            
+            if((pesoActual + itemBuscado.getPeso()) <= pesoMax){
+                mochila.add(itemBuscado);
+                pesoActual += itemBuscado.getPeso();
+                currentRoom.eliminarItem(item);
+            }
+            else{
+                System.out.println("No puedes cargar con este objeto");
+            }
+        }
+    }
+    
+    private void soltar(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("¿Que quieres soltar?");
+            return;
+        }
+
+        String item = command.getSecondWord();
+
+        int cont = 0;
+        boolean buscando = true;
+        while(buscando && cont < mochila.size()){
+            Item itemBuscado = mochila.get(cont);
+            if (itemBuscado.getDescripcion().equals(item)) {
+                buscando = false;
+                pesoActual -= itemBuscado.getPeso();
+                currentRoom.addItem(itemBuscado);
+                mochila.remove(cont);
+            }
+        }
+    }
+    
+    private void mochila(){
+        for(Item itemActual : mochila){
+            System.out.println(itemActual);
         }
     }
 }

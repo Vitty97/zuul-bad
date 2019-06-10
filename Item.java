@@ -22,4 +22,12 @@ public class Item
     public String getDescripcion(){
         return descripcion;
     }
+    
+    public int getPeso(){
+        return peso;
+    }
+    
+    public String toString(){
+        return descripcion + "  Peso: " + peso;
+    }
 }
