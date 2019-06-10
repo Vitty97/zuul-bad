@@ -98,7 +98,9 @@ public class Room
             Item objetoActual = items.get(cont);
             if(objetoActual.getId().equals(id)){
                 objetoABuscar = objetoActual;
+                buscando = false;
             }
+            cont++;
         }
         return objetoABuscar;
     }

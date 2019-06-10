@@ -67,18 +67,20 @@ public class Jugador
     public void coger(Command command) 
     {
         if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
             System.out.println("¿Coger que?");
             return;
         }
 
         String id = command.getSecondWord();
-
-        // Try to leave current room.
         Item objeto = currentRoom.getObjeto(id);
 
         if(objeto != null) {
-            mochila.add(objeto);
+            if(objeto.puedeCogerse()){
+                mochila.add(objeto);
+            }
+            else{
+                System.out.println("No parece que puedas llevarte esto");
+            }
         }
         else{
             System.out.println("No puedes encontrar ese objeto en la habitacion");

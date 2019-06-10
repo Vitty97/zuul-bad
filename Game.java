@@ -65,8 +65,9 @@ public class Game
         salaDeMaquinas.setSalidas("noroeste", salaMaquinasSup);
         salaDeControl.setSalidas("oeste", comedorCentral);
         
-        salaDeMaquinas.addItem(new Item("llaveInglesa", "Llave Inglesa", 5));
-        salaDeMaquinas.addItem(new Item("tuberia", "Tuberia", 6));
+        salaDeMaquinas.addItem(new Item("llaveInglesa", "Llave Inglesa", 5, true));
+        salaDeMaquinas.addItem(new Item("tuberia", "Tuberia", 6, true));
+        habitaciones.addItem(new Item("baul", "Baul", 40, false));
         
         currentRoom = comedorCentral;  // start game outside
         return currentRoom;

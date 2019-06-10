@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class Item here.
  *
@@ -11,14 +10,16 @@ public class Item
     private String id;
     private String descripcion;
     private int peso;
+    private boolean puedeCogerse;
 
     /**
      * Constructor for objects of class Item
      */
-    public Item(String id, String descripcion, int peso){
+    public Item(String id, String descripcion, int peso, boolean puedeCogerse){
         this.id = id;
         this.descripcion = descripcion;
         this.peso = peso;
+        this.puedeCogerse = puedeCogerse;
     }
 
     public String getDescripcion(){
@@ -31,5 +32,9 @@ public class Item
     
     public int getPeso(){
         return peso;
+    }
+    
+    public boolean puedeCogerse(){
+        return puedeCogerse;
     }
 }
