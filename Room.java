@@ -83,10 +83,29 @@ public class Room
         if(!items.isEmpty()){
             aDevolver += "Objetos: ";
             for(Item itemActual : items){
-                aDevolver += itemActual.getDescripcion() + " ";
+                aDevolver += itemActual.getId() + " ";
             }
         }            
         aDevolver += "\nSalidas: " + getExitsString();   
         return aDevolver;
+    }
+    
+    public Item getObjeto(String id){
+        Item objetoABuscar = null;
+        boolean buscando = true;
+        int cont = 0;
+        while(buscando && cont < items.size()){
+            Item objetoActual = items.get(cont);
+            if(objetoActual.getId().equals(id)){
+                objetoABuscar = objetoActual;
+                buscando = false;
+            }
+            cont++;
+        }
+        return objetoABuscar;
+    }
+    
+    public void eliminarItem(Item item){
+        items.remove(item);
     }
 }
