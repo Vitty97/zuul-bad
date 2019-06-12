@@ -65,9 +65,10 @@ public class Game
         salaDeMaquinas.setSalidas("noroeste", salaMaquinasSup);
         salaDeControl.setSalidas("oeste", comedorCentral);
         
-        salaDeMaquinas.addItem(new Item("llaveInglesa", "Llave Inglesa", 5, true));
-        salaDeMaquinas.addItem(new Item("tuberia", "Tuberia", 6, true));
-        habitaciones.addItem(new Item("baul", "Baul", 40, false));
+        salaDeMaquinas.addItem(new Item("llaveInglesa", "Llave Inglesa", 5, true, false, 0));
+        salaDeMaquinas.addItem(new Item("tuberia", "Tuberia", 6, true, false, 0));
+        habitaciones.addItem(new Item("baul", "Baul", 40, false, false, 0));
+        comedorCentral.addItem(new Item("cerveza", "Una jarra de cerveza", 2, true, true, 5));
         
         currentRoom = comedorCentral;  // start game outside
         return currentRoom;
@@ -143,6 +144,9 @@ public class Game
         }
         else if (commandWord.equals("soltar")) {
             jugador.soltar(command);
+        }
+        else if (commandWord.equals("usar")) {
+            jugador.usar(command);
         }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);

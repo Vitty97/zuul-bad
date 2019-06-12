@@ -83,7 +83,7 @@ public class Room
         if(!items.isEmpty()){
             aDevolver += "Objetos: ";
             for(Item itemActual : items){
-                aDevolver += itemActual.getDescripcion() + " ";
+                aDevolver += itemActual.getId() + " ";
             }
         }            
         aDevolver += "\nSalidas: " + getExitsString();   

@@ -44,9 +44,14 @@ public class Jugador
             System.out.println("There is no door!");
         }
         else {
-            pilaHabitaciones.push(currentRoom);
-            currentRoom = nextRoom;            
-            mirar();
+            if(pesoActual > pesoMax){
+                System.out.println("Llevas demasiado peso, no puedes moverte!!");
+            }
+            else{
+                pilaHabitaciones.push(currentRoom);
+                currentRoom = nextRoom;            
+                mirar();
+            }
         }
     }
     
@@ -118,6 +123,28 @@ public class Jugador
                 pesoActual -= objetoActual.getPeso();
                 mochila.remove(objetoActual);
                 buscando = false;
+            }
+            cont++;
+        }
+    }
+    
+    public void usar(Command command){
+        if(!command.hasSecondWord()) {
+            System.out.println("¿Usar que?");
+            return;
+        }
+
+        String id = command.getSecondWord();
+
+        boolean buscando = true;
+        int cont = 0;
+        while(buscando && cont < mochila.size()){
+            Item objetoActual = mochila.get(cont);
+            if(objetoActual.getId().equals(id)){
+                pesoMax += objetoActual.usar();
+                buscando = false;
+                pesoActual -= objetoActual.getPeso();
+                mochila.remove(objetoActual);
             }
             cont++;
         }
